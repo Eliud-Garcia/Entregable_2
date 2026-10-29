@@ -1,0 +1,91 @@
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.1 9.1 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3.5a8.4 8.4 0 0 1 9 8Z"/>
+        </svg>
+      </span>
+      <div>
+        <h1 class="brand__title">Chat WebSocket</h1>
+        <p class="brand__subtitle">Express · ws · Handlebars</p>
+      </div>
+    </div>
+
+    <div class="status" id="status" data-state="connecting" role="status" aria-live="polite">
+      <span class="status__dot" aria-hidden="true"></span>
+      <span class="status__text">Conectando…</span>
+    </div>
+  </header>
+
+  <main class="chat">
+    <section class="chat__main" aria-label="Conversación">
+      <ol class="messages" id="messages" aria-live="polite" aria-relevant="additions"></ol>
+
+      <p class="empty" id="empty">Todavía no hay mensajes. ¡Escribe el primero!</p>
+
+      <form class="composer" id="composer" autocomplete="off">
+        <label class="sr-only" for="input">Mensaje</label>
+        <input
+          class="composer__input"
+          id="input"
+          name="message"
+          type="text"
+          placeholder="Escribe un mensaje…"
+          maxlength="500"
+          autocomplete="off"
+          disabled
+        >
+        <button class="composer__button" id="send" type="submit" disabled>
+          <span>Enviar</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+          </svg>
+        </button>
+      </form>
+      <p class="hint">Enter para enviar · máximo 500 caracteres</p>
+    </section>
+
+    <aside class="sidebar" aria-label="Usuarios en línea">
+      <div class="sidebar__head">
+        <h2>En línea</h2>
+        <span class="badge" id="userCount">0</span>
+      </div>
+      <ul class="users" id="userList"></ul>
+      <p class="sidebar__note">Los mensajes se comparten con todas las personas conectadas.</p>
+    </aside>
+  </main>
+</div>
+
+<div class="modal" id="joinModal" role="dialog" aria-modal="true" aria-labelledby="joinTitle">
+  <form class="modal__card" id="joinForm" autocomplete="off">
+    <span class="modal__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/>
+      </svg>
+    </span>
+
+    <h2 class="modal__title" id="joinTitle">¿Cómo te llamas?</h2>
+    <p class="modal__text">Elige un nombre para entrar al chat.</p>
+
+    <label class="sr-only" for="username">Nombre</label>
+    <input
+      class="modal__input"
+      id="username"
+      name="username"
+      type="text"
+      placeholder="Tu nombre"
+      maxlength="20"
+      required
+      autofocus
+    >
+
+    <p class="modal__error" id="joinError" role="alert" hidden></p>
+
+    <button class="modal__button" type="submit">Entrar al chat</button>
+  </form>
+</div>
+
+<footer class="footer">
+  <p>&copy; {{year}} Chat de ejemplo — {{title}}</p>
+</footer>
